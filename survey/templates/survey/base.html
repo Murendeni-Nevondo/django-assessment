@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CoreUI for Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.2/dist/css/coreui.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+
+    <title>Survey</title>
+    <!-- CUSTOM STYLE -->
+    <style>
+      body {
+        background-image: linear-gradient(to right, #040d21, #431f48);
+        color: honeydew;
+      }
+
+      .btn {
+        color: honeydew;
+      }
+
+      .btn:hover {
+        color: whitesmoke;
+      }
+
+      .breadcrumb {
+        color: #00cfc8;
+      }
+
+      .breadcrumb-item.active {
+        color: var(--cui-breadcrumb-active-color, honeydew);
+      }
+
+      .breadcrumb .breadcrumb-item a {
+        color: var(--cui-link-color, #00cfc8);
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">{% block content %} {% endblock %}</div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.2/dist/js/coreui.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

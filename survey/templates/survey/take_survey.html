@@ -1,0 +1,75 @@
+{% extends 'survey/base.html' %} {% block content %}
+<div class="containter">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'survey' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Take our Survey
+      </li>
+    </ol>
+  </nav>
+</div>
+<div class="d-grid gap-2 col-7 mx-auto" style="margin-top: 10px">
+  Personal Details:
+  <form>
+    <div class="d-grid gap-1 col-10 mx-auto">
+      <div class="mb-2 row">
+        <label for="inputSurname" class="col-sm-3 col-form-label"
+          >Surname</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            name="surname"
+            class="form-control"
+            id="inputSurname"
+          />
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="inputFirstNames" class="col-sm-3 col-form-label"
+          >First Names</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            name="first_names"
+            class="form-control"
+            id="inputFirstNames"
+          />
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="inputContactNumber" class="col-sm-3 col-form-label"
+          >Contact number</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            name="contact_number"
+            class="form-control"
+            id="inputContactNumber"
+          />
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="inputDate" class="col-sm-3 col-form-label">Date</label>
+        <div class="col-sm-9">
+          <input type="date" name="date" class="form-control" id="inputDate" />
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="inputAge" class="col-sm-3 col-form-label">Age</label>
+        <div class="col-sm-2">
+          <input type="number" name="age" class="form-control" id="inputAge" />
+        </div>
+      </div>
+    </div>
+    What is your favourite food? (You can choose more than 1 answer)
+  </form>
+</div>
+{% endblock %}
