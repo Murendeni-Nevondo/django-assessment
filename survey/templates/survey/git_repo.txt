@@ -11,5 +11,3 @@ git push -u origin main
 git remote add origin https://github.com/Murendeni-Nevondo/django-assessment.git
 git branch -M main
 git push -u origin main
-
-Token - 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
