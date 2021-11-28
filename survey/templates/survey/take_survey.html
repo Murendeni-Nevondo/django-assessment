@@ -1,5 +1,5 @@
 {% extends 'survey/base.html' %} {% block content %}
-<div class="containter">
+<div class="cont">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'survey' %}">Home</a></li>
@@ -9,9 +9,11 @@
     </ol>
   </nav>
 </div>
-<div class="d-grid gap-2 col-7 mx-auto" style="margin-top: 10px">
+<div class="d-grid gap-2 col-8 mx-auto" style="margin-top: 10px">
+  
   Personal Details:
-  <form>
+  <form action="{% url 'submit_answers' %}" method="POST">
+    {% csrf_token %}
     <div class="d-grid gap-1 col-10 mx-auto">
       <div class="mb-2 row">
         <label for="inputSurname" class="col-sm-3 col-form-label"
@@ -23,6 +25,7 @@
             name="surname"
             class="form-control"
             id="inputSurname"
+            required
           />
         </div>
       </div>
@@ -37,6 +40,7 @@
             name="first_names"
             class="form-control"
             id="inputFirstNames"
+            required
           />
         </div>
       </div>
@@ -51,6 +55,7 @@
             name="contact_number"
             class="form-control"
             id="inputContactNumber"
+            required
           />
         </div>
       </div>
@@ -58,18 +63,383 @@
       <div class="mb-2 row">
         <label for="inputDate" class="col-sm-3 col-form-label">Date</label>
         <div class="col-sm-9">
-          <input type="date" name="date" class="form-control" id="inputDate" />
+          <input type="date" name="date" value='{{ today }}' class="form-control" id="inputDate" required />
         </div>
       </div>
 
       <div class="mb-2 row">
         <label for="inputAge" class="col-sm-3 col-form-label">Age</label>
         <div class="col-sm-2">
-          <input type="number" name="age" class="form-control" id="inputAge" />
+          <input type="number" name="age" class="form-control" id="inputAge" min="5" max="120" required />
         </div>
       </div>
     </div>
+
+    <br>
+    <!-- FAVIOURITE FOOD -->
     What is your favourite food? (You can choose more than 1 answer)
+    <br />
+    <div class="d-grid gap-1 col-10 mx-auto">
+      <fieldset>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionOne"
+          value="Pizza"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionOne">Pizza</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionTwo"
+          value="Pasta"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionTwo">Pasta</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionThree"
+          value="Pap and Wors"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionThree">Pap and Wors</label>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionFour"
+          value="Chicken stir fry"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionFour"
+          >Chicken stir fry</label
+        >
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionFive"
+          value="Beef stir fry"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionFive">Beef stir fry</label>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="optionSix"
+          value="Other"
+          name="favourite_food"
+        />
+        <label class="form-check-label" for="optionSix">Other</label>
+      </div>
+      </fieldset>
+    </div>
+    <!-- END FAVIOURITE FOOD -->
+
+    On a scale of 1 to 5 indicate whether you strongly agree to strongly
+    disagree
+    <div class="row">
+      <!-- HEADER -->
+      <div class="col-md-2 text-center" style="border: 1px solid green"></div>
+      <div class="col-md-2 text-center" style="border: 1px solid green">
+        Strongly Agree (1)
+      </div>
+      <div class="col-md-2 text-center" style="border: 1px solid green">
+        Agree (2)
+      </div>
+      <div class="col-md-2 text-center" style="border: 1px solid green">
+        Neutral (3)
+      </div>
+      <div class="col-md-2 text-center" style="border: 1px solid green">
+        Disagree (4)
+      </div>
+      <div class="col-md-2 text-center" style="border: 1px solid green">
+        Strongly disagree (5)
+      </div>
+      <!-- EATS OUT OPTIONS -->
+      <div
+        class="col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        I like to eat out
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_eat_out"
+          id="inlineRadio2"
+          value="1"
+        />
+      </div>
+
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_eat_out"
+          id="inlineRadio2"
+          value="2"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_eat_out"
+          id="inlineRadio2"
+          value="3"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_eat_out"
+          id="inlineRadio2"
+          value="4"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_eat_out"
+          id="inlineRadio2"
+          value="5"
+        />
+      </div>
+      <!-- END EATS OUT OPTIONS -->
+
+      <!-- WATCH MOVIES OPTIONS -->
+      <div
+        class="col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        I like to watch movies
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_movies"
+          id="inlineRadio2"
+          value="1"
+        />
+      </div>
+
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_movies"
+          id="inlineRadio2"
+          value="2"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_movies"
+          id="inlineRadio2"
+          value="3"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_movies"
+          id="inlineRadio2"
+          value="4"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_movies"
+          id="inlineRadio2"
+          value="5"
+        />
+      </div>
+      <!-- END WATCH MOVIES OPTIONS -->
+
+      <!-- WATCH TV OPTIONS -->
+      <div
+        class="col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+       I like to watch TV
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_tv"
+          id="inlineRadio2"
+          value="1"
+        />
+      </div>
+
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_tv"
+          id="inlineRadio2"
+          value="2"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_tv"
+          id="inlineRadio2"
+          value="3"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_tv"
+          id="inlineRadio2"
+          value="4"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_to_watch_tv"
+          id="inlineRadio2"
+          value="5"
+        />
+      </div>
+      <!-- END WATCH TV OPTIONS -->
+
+      <!-- LISTENS TO RADIO OPTIONS -->
+      <div
+        class="col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;;border-bottom: 1px solid green;"
+      >
+      I like to listen to the radio 
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;;border-bottom: 1px solid green;"
+      >
+        <input
+          type="radio"
+          name="likes_listening_to_radio"
+          id="inlineRadio2"
+          value="1"
+        />
+      </div>
+
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;;border-bottom: 1px solid green;"
+      >
+        <input
+          type="radio"
+          name="likes_listening_to_radio"
+          id="inlineRadio2"
+          value="2"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;;border-bottom: 1px solid green;"
+      >
+        <input
+          type="radio"
+          name="likes_listening_to_radio"
+          id="inlineRadio2"
+          value="3"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;;border-bottom: 1px solid green;"
+      >
+        <input
+          type="radio"
+          name="likes_listening_to_radio"
+          id="inlineRadio2"
+          value="4"
+        />
+      </div>
+      <div
+        class="form-check col-md-2 text-center"
+        style="border-left: 1px solid green; border-right: 1px solid green;border-bottom: 1px solid green"
+      >
+        <input
+          type="radio"
+          name="likes_listening_to_radio"
+          id="inlineRadio2"
+          value="5"
+        />
+      </div>
+      <!-- END WATCH TV OPTIONS -->
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-lg btn-info rounded-0 mt-3">Submit</button>
+    </div>
+    
+    </div>
+
+    <br />
+    
   </form>
 </div>
+
 {% endblock %}
