@@ -12,16 +12,20 @@ from .models import Survey
 # Create your views here.
 def index(request):
     return render(request, 'survey/index.html', {
-        'name': 'Murendeni Nevondo'
+        'name': 'Home Page'
     })
 
 
 def take_survey(request):
-    print(date.today())
     return render(request, 'survey/take_survey.html', {
-        'today': date.today()
+        'today': date.today().strftime('%Y-%m-%d')
     })
 
+
+def survey_results(request):
+    return render(request, 'survey/survey_results.html', {
+        'name': 'Survey Results'
+    })
 
 def submit_survey(request):
     if request.method == 'POST':

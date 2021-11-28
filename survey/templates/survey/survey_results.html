@@ -1,0 +1,14 @@
+{% extends 'survey/base.html' %} {% block content %}
+<div class="cont">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'survey' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Survey Results</li>
+    </ol>
+  </nav>
+</div>
+<div class="d-grid gap-2 col-8 mx-auto" style="margin-top: 10px">
+  <h4>Survey Results</h4>
+</div>
+
+{% endblock %}
